@@ -39,7 +39,7 @@ const sleep = (ms: number): Promise<void> => new Promise((r) => setTimeout(r, ms
 async function xFetch<T>(path: string, params: Record<string, string>): Promise<T> {
   const token = secrets.X_BEARER_TOKEN
   if (!token) {
-    throw new Error('X_BEARER_TOKEN secret is not set. Export SECRET_X_BEARER_TOKEN.')
+    throw new Error('X_BEARER_TOKEN secret is not set. Export it')
   }
 
   const url = `${X_API_BASE}${path}?${new URLSearchParams(params).toString()}`
@@ -75,7 +75,7 @@ async function xFetch<T>(path: string, params: Record<string, string>): Promise<
   throw new Error(`X API failed after ${maxAttempts} attempts`)
 }
 
-// Search recent tweets (last 7 days on Basic tier, last hour on Free).
+// Search recent tweets
 export async function searchRecent(
   query: string,
   maxResults = 25,
